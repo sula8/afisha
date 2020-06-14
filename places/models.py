@@ -19,5 +19,7 @@ class PlaceImage(models.Model):
 	def __str__(self):
 		return f'Изображение #{self.id} места "{self.place.title}"'
 
-	def sort_imgs(self):
-		return
+	class Meta:
+		verbose_name = 'Изображение места'
+		verbose_name_plural = 'Изображения места'
+		ordering = ['id']
