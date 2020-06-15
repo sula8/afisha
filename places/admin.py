@@ -4,11 +4,13 @@ from places.models import Place, PlaceImage
 
 
 class PlaceImageInline(admin.TabularInline):
-    model = PlaceImage
+	model = PlaceImage
+
+	readonly_fields = ['image_preview']
 
 
 @admin.register(Place)
 class AdminPlace(admin.ModelAdmin):
-    inlines = [
+	inlines = [
 		PlaceImageInline,
 	]

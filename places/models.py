@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import format_html
 
 
 class Place(models.Model):
@@ -19,6 +20,9 @@ class PlaceImage(models.Model):
 
 	def __str__(self):
 		return f'Изображение #{self.id} места "{self.place.title}"'
+
+	def image_preview(self):
+		return format_html('<img src="{url}" style="height:100px" />'.format(url=self.image.url))
 
 	class Meta:
 		verbose_name = 'Изображение места'
