@@ -23,7 +23,7 @@ def get_geojson():
                 "properties": {
                     "title": place.title,
                     "placeId": place.id,
-                    "detailsUrl": reverse('places:place_details', args=[place.pk]),
+                    "detailsUrl": reverse('place_details', args=[place.pk]),
                 }
             }
 

@@ -3,9 +3,12 @@ from django.contrib import admin
 from places.models import Place, PlaceImage
 
 
-class AdminPlaceImage(admin.ModelAdmin):
-	raw_id_fields = ['place']
+class PlaceImageInline(admin.TabularInline):
+    model = PlaceImage
 
 
-admin.site.register(Place)
-admin.site.register(PlaceImage, AdminPlaceImage)
+@admin.register(Place)
+class AdminPlace(admin.ModelAdmin):
+    inlines = [
+		PlaceImageInline,
+	]
