@@ -32,13 +32,6 @@ def get_geojson():
     return places_geojson
 
 
-def index(request):
-    data = {
-        'places_data': get_geojson()
-    }
-    return render(request, 'index.html', context=data)
-
-
 def place_details(request, pk):
     place = get_object_or_404(Place, pk=int(pk))
 
@@ -57,3 +50,10 @@ def place_details(request, pk):
         response_data["imgs"].append(img.image.url)
 
     return JsonResponse(response_data, safe=False, json_dumps_params={'ensure_ascii': False})
+
+
+def index(request):
+    data = {
+        'places_data': get_geojson()
+    }
+    return render(request, 'index.html', context=data)
