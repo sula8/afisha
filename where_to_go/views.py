@@ -15,17 +15,17 @@ def get_geojson():
 
     for place in places:
         serialized_place = {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [place.lng, place.lat]
-                },
-                "properties": {
-                    "title": place.title,
-                    "placeId": place.id,
-                    "detailsUrl": reverse('place_details', args=[place.pk]),
-                }
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [place.lng, place.lat]
+            },
+            "properties": {
+                "title": place.title,
+                "placeId": place.id,
+                "detailsUrl": reverse('place_details', args=[place.pk]),
             }
+        }
 
         places_geojson['features'].append(serialized_place)
 
