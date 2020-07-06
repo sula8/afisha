@@ -14,7 +14,7 @@ def get_geojson():
     places = Place.objects.all()
 
     for place in places:
-        place_serialized = {
+        serialized_place = {
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
@@ -27,7 +27,7 @@ def get_geojson():
                 }
             }
 
-        places_geojson['features'].append(place_serialized)
+        places_geojson['features'].append(serialized_place)
 
     return places_geojson
 
@@ -35,19 +35,18 @@ def get_geojson():
 def place_details(request, pk):
     place = get_object_or_404(Place, pk=int(pk))
 
+    imgs = [img.image.url for img in place.images.all()]
+
     response_data = {
         "title": place.title,
-        "imgs": [],
-        "description_short": place.description_short,
-        "description_long": place.description_long,
+        "imgs": imgs,
+        "description_short": place.short_description,
+        "description_long": place.long_description,
         "coordinates": {
             "lat": place.lat,
             "lng": place.lng
         }
     }
-
-    for img in place.images.all():
-        response_data["imgs"].append(img.image.url)
 
     return JsonResponse(response_data, safe=False, json_dumps_params={'ensure_ascii': False})
 
