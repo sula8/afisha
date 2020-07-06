@@ -3,6 +3,7 @@ __pycache__
 .idea
 media
 venv
+static/places
 
 config
 .DS_Store
