@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 
 from tinymce.models import HTMLField
 
@@ -28,7 +28,7 @@ class PlaceImage(models.Model):
         return f'Изображение #{self.id} места "{self.place.title}"'
 
     def image_preview(self):
-        return format_html('<img src="{url}" style="height:100px" />'.format(url=self.image.url))
+        return mark_safe(f'<img src="{self.image.url}" height="200"')
 
     class Meta:
         ordering = ['my_order']
