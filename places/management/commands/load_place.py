@@ -34,8 +34,8 @@ def add_place(url):
 
     place, ans = Place.objects.get_or_create(
         title=json_data.get('title'),
-        description_short=json_data.get('description_short'),
-        description_long=json_data.get('description_long'),
+        short_description=json_data.get('short_description'),
+        long_description=json_data.get('long_description'),
         lng=json_data.get('coordinates').get('lng'),
         lat=json_data.get('coordinates').get('lat')
     )
