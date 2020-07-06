@@ -14,13 +14,12 @@ def get_json_urls(url):
     response.raise_for_status()
 
     soup = BeautifulSoup(response.text, 'lxml')
-    selector = "main table.files td.content a.js-navigation-open"
-
+    selector = "div.js-details-container a.js-navigation-open"
     links = soup.select(selector)
 
     raw_git_url = 'https://raw.githubusercontent.com'
     urls = []
-    for link in links:
+    for link in links[1:]:
         empty_var, git_acc, repo, some_var, branch, folder, file = link['href'].split('/')
         url = f'{raw_git_url}/{git_acc}/{repo}/{branch}/{folder}/{file}'
         urls.append(url)
@@ -34,8 +33,8 @@ def add_place(url):
 
     place, ans = Place.objects.get_or_create(
         title=json_data.get('title'),
-        short_description=json_data.get('short_description'),
-        long_description=json_data.get('long_description'),
+        short_description=json_data.get('description_short'),
+        long_description=json_data.get('description_long'),
         lng=json_data.get('coordinates').get('lng'),
         lat=json_data.get('coordinates').get('lat')
     )
