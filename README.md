@@ -4,7 +4,7 @@
 [Демо-сайт](http://asultanbek.pythonanywhere.com/) <br>
 [Aдминка демо-сайта](http://asultanbek.pythonanywhere.com/admin/places/place/) - тут можно добавить новое место или отредактировать старое (логин и пароль по запросу)
 
-![Куда пойти](scr/scr.png)
+![Куда пойти](git_assets/screenshot.png)
 
 ## Запуск
 
